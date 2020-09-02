@@ -31,8 +31,7 @@ class App extends React.Component {
               ...snapShot.data(),
             },
           });
-
-          console.log(this.state);
+          //dito mag console log ng state if checking
         });
       }
       this.setState({ currentUser: userAuth });
