@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux"; // pang connect from redux
 import { auth } from "../../firebase/firebase.utils";
 import { ReactComponent as Logo } from "../../assets/crown.svg"; // special syntax for importing svg
 
@@ -30,4 +31,9 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default Header;
+const mapStateToProps = (state) => ({
+  //yung state is root reducer
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);
