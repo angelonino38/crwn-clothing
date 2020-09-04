@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"; // pang connect from redux
+import { createStructuredSelector } from "reselect";
 
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart/cart-dropdown.component";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg"; // special syntax for importing svg
 
@@ -37,10 +40,10 @@ const Header = ({ currentUser, hidden }) => (
   </div>
 );
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  //yung state is root reducer
-  currentUser,
-  hidden,
+const mapStateToProps = createStructuredSelector({
+  //yung state is root reducer/ createStructuredSelector is kapag maraming state distribution pass the top level state
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);
