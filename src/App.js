@@ -36,6 +36,7 @@ class App extends React.Component {
         });
       }
       setCurrentUser(userAuth);
+      //add collection and documents pang set ng collections data sa firebase
     });
   }
 
