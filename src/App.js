@@ -10,7 +10,7 @@ import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import CheckoutPage from "./pages/checkout/checkout.component";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+//import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
@@ -22,22 +22,22 @@ class App extends React.Component {
   componentDidMount() {
     const { setCurrentUser } = this.props; //nag de-construct sub sa setState
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
 
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            //you dont need setState because of setCurrentUser redux.
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-          //dito mag console log ng state if checking
-        });
-      }
-      setCurrentUser(userAuth);
-      //add collection and documents pang set ng collections data sa firebase
-    });
+    //     userRef.onSnapshot((snapShot) => {
+    //       setCurrentUser({
+    //         //you dont need setState because of setCurrentUser redux.
+    //         id: snapShot.id,
+    //         ...snapShot.data(),
+    //       });
+    //       //dito mag console log ng state if checking
+    //     });
+    //   }
+    //   setCurrentUser(userAuth);
+    //   //add collection and documents pang set ng collections data sa firebase
+    // });
   }
 
   componentWillUnmount() {
