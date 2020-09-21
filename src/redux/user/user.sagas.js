@@ -16,9 +16,16 @@ import {
 
 export function* signInWithGoogle() {
   try {
-    const userRef = yield auth.signInWithPopup(googleProvider);
+    const { user } = yield auth.signInWithPopup(googleProvider);
+    const userRef = yield call(createUserProfileDocument, user);
+    const userSnapshot = yield userRef.get();
+    yield put(
+      googleSignInSuccess({ id: userSnapshot.id, ...userSnapshot.data() })
+    );
     console.log(userRef);
-  } catch (error) {}
+  } catch (error) {
+    yield put(googleSignInFailure(error));
+  }
 }
 
 export function* signInWithEmail({ payload: { email, password } }) {
@@ -43,5 +50,5 @@ export function* onEmailSignInStart() {
 }
 
 export function* userSagas() {
-  yield all([call(onGoogleSignInStart, call(onEmailSignInStart))]);
+  yield all([call(onGoogleSignInStart), call(onEmailSignInStart)]);
 }
