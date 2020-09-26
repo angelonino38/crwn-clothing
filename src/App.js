@@ -12,32 +12,16 @@ import CheckoutPage from "./pages/checkout/checkout.component";
 
 //import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
-import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import { checkUserSession } from "./redux/user/user.actions";
 
 class App extends React.Component {
   //we dont need constructor because of redux setup
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props; //nag de-construct sub sa setState
-
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-
-    //     userRef.onSnapshot((snapShot) => {
-    //       setCurrentUser({
-    //         //you dont need setState because of setCurrentUser redux.
-    //         id: snapShot.id,
-    //         ...snapShot.data(),
-    //       });
-    //       //dito mag console log ng state if checking
-    //     });
-    //   }
-    //   setCurrentUser(userAuth);
-    //   //add collection and documents pang set ng collections data sa firebase
-    // });
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   componentWillUnmount() {
@@ -78,9 +62,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  checkUserSession: () => dispatch(checkUserSession()),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // dispatch = whatever object passing it will be action obj that pass to every reducer

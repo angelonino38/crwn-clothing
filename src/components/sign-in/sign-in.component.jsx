@@ -5,8 +5,6 @@ import FormInput from "../form-input/form-input.component";
 
 import CustomButton from "../custom-button/custom-button.component";
 
-import { auth, signInwithGoogle } from "../../firebase/firebase.utils";
-
 import {
   googleSignInStart,
   emailSignInStart,
@@ -29,14 +27,7 @@ class SignIn extends React.Component {
     const { emailSignInStart } = this.props;
     const { email, password } = this.state;
 
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: "", password: "" });
-    } catch (error) {
-      console.log(error);
-    }
-
-    // emailSignInStart(email, password);
+    emailSignInStart(email, password);
   };
 
   handleChange = (event) => {
