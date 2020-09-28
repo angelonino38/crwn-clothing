@@ -4,7 +4,7 @@ import logger from "redux-logger"; // this is middleware
 
 import createSagaMiddleware from "redux-saga";
 
-import { fetchCollectionsStart } from "./shop/shop.sagas";
+//import { fetchCollectionsStart } from "./shop/shop.sagas";
 import rootSaga from "../redux/root-saga";
 
 import rootReducer from "./root-reducer";
