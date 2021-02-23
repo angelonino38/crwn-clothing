@@ -5,7 +5,8 @@ import "firebase/auth";
 require('dotenv').config()
 
 const config = {
-  apiKey: process.env.FIREBASE_TOKEN,// setup environmental variable for firebase
+  //apiKey: process.env.FIREBASE_TOKEN,// setup environmental variable for firebase
+  apiKey: "AIzaSyCq_-1coGdALIe7JPnbjjTCPfX1msEmo50",
   authDomain: "crwn-db-12f3e.firebaseapp.com",
   databaseURL: "https://crwn-db-12f3e.firebaseio.com",
   projectId: "crwn-db-12f3e",
